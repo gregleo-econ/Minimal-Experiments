@@ -368,8 +368,10 @@ getEssentialPosets <- function(posets){
       }
       
     }
+    if(length(remove)>0){
     posetsRanking[[partition]] <- posetsRanking[[partition]][-remove]
     posets[[partition]] <- posetsInPartition[-remove]
+    }
   }
   return(list(posetList = posets,posetRankingsList=posetsRanking))
 }
