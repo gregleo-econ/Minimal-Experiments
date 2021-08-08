@@ -1,4 +1,3 @@
-
 ############################
 ############################
 ###                      ###
@@ -359,8 +358,11 @@ getEssentialPosets <- function(posets){
     posetsInPartition <- posets[[partition]]
     posetsInPartition <- unique(sapply(posetsInPartition,sort))
     for(poset in 1:length(posetsInPartition)){
+      currentPoset <- posetsInPartition[[poset]]
+      choicesInPoset <- unique(sapply(currentPoset,substr,start=1,stop=1))
       for(otherPoset in posetsInPartition[-poset]){
-        if(all(otherPoset %in% posetsInPartition[[poset]])){
+        choicesInOther <- unique(sapply(otherPoset,substr,start=1,stop=1))
+        if(all(choicesInOther %in% choicesInPoset) && length(choicesInPoset)>length(choicesInOther)){
           remove <- c(remove,poset)
           break}
       }
